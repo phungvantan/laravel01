@@ -17,7 +17,7 @@ class CreateTinTable extends Migration
             $table->id();
             $table->string("tieu_de");
             $table->string("slug");
-            $table->integer("tom_tat");
+            $table->string("tom_tat");
             $table->unsignedInteger("view")->default(0);
             $table->integer("status");
             $table->unsignedBigInteger("user_id");  

@@ -14,5 +14,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+            $this->call([
+            TheLoaiTableSeeder::class,
+            LoaiTinTableSeeder::class,
+            UserTableSeeder::class,
+            TinTableSeeder::class,
+            CommentTableSeeder::class
+
+
+        ]);
     }
 }

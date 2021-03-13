@@ -21,9 +21,9 @@ Route::get('foo',function(){
     $b=8;
     return $a. '+' .$b. '='.($a + $b);
 });
-Route::get('User/{id}',function($id){
-    return 'User' .$id;
-});
+Route::get('User/{age}',function($age){
+    return 'Tuoi' .$age;
+})->middleware('checkage');
 Route::get('user/{name?}',function ($name = 'PhungVanTan')
 {
     return $name;
@@ -34,5 +34,6 @@ Route::get('posts/{post}/comments/{comment}', function($postID, $commentID){
 Route::prefix('Admin')->group(function(){
     Route::get('User/{id}',function($id){
         return 'User'.$id;
-    });
+});
+
 });

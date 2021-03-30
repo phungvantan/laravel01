@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 use App\Models\TheLoai;
+use App\Models\loaitin;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -85,3 +87,50 @@ Route::delete('theloais/{id}', function($id){
     TheLoai::destroy($id);
 })->name('theloais.destroy');
 
+
+
+
+/*************************
+ * Route for Loai Tin
+ *************************/
+// Index URI: loaitin
+Route::get('loaitin', function(){
+    $listLoaiTin = loaitin::all();
+    return view('loaitin.index', array('listLoaiTin' => $listLoaiTin));
+})->name('loaitin.index');
+
+// Create URI: loaitin/create
+Route::get('loaitin/create', function(){
+    return view('loaitin.create');
+})->name('loaitin.create');
+
+// Store URI: loaitin
+Route::post('loaitin', function(Request $request){
+    loaitin::create($request->all());
+    return redirect()->route('loaitin.index');
+})->name('loaitin.store');
+
+// Show URI: loaitin/{id}
+
+Route::get('loaitin/{id}', function($id){
+    $loaitin = loaitin::find($id);
+    return view('loaitin.show', array('loaitin' => $loaitin));
+})->name('loaitin.show');
+
+// Edit URI: loaitin/{id}/edit
+Route::get('loaitin/{id}/edit', function($id){
+    $loaitin = loaitin::find($id);
+    return view('loaitin.edit', array('loaitin' => $loaitin));
+})->name('loaitin.edit');
+
+// Update URI: loaitin/{id}
+Route::put('loaitin/{id}', function($id, Request $request){
+    $loaitin = loaitin::find($id);
+    $loaitin->update($request->all());
+    return redirect()->route('loaitin.index');
+})->name('loaitin.update');
+
+// Delete URI: loaitin/{id}
+Route::delete('loaitin/{id}', function($id){
+    loaitin::destroy($id);
+})->name('loaitin.destroy');
